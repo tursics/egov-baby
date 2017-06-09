@@ -43,6 +43,14 @@ $('.buttonSocialMedia').click(function (event) {
 
 //-----------------------------------------------------------------------
 
+$('#buttonCity').click(function (event) {
+	'use strict';
+
+	activateTab('#baby1');
+});
+
+//-----------------------------------------------------------------------
+
 $(document).ready(function () {
 	'use strict';
 
