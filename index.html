@@ -32,8 +32,8 @@
 			  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				  <ul class="nav navbar-nav">
 					  <li><a href="#welcome">Willkommen <span class="sr-only">(current)</span></a></li>
-					  <li><a href="#pa1">Link</a></li>
-					  <li><a href="#pa2">Link</a></li>
+					  <li><a href="#openIssues">Offen <span class="badge" style="background-color:#31708f;"></span></a></li>
+					  <li><a href="#pa2">Erledigt <span class="badge" style="background-color:#31708f;"></span></a></li>
 				  </ul>
 				  <ul class="nav navbar-nav navbar-right">
 					  <li><a href="#login"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Login</a></li>
@@ -44,9 +44,10 @@
 	  </nav>
 	  <ul class="nav nav-tabs hidden">
 		  <li><a href="#welcome"></a></li>
-		  <li><a href="#baby1"></a></li>
+		  <li><a href="#birth"></a></li>
 		  <li><a href="#login"></a></li>
 		  <li><a href="#city"></a></li>
+		  <li><a href="#openIssues"></a></li>
 	  </ul>
 
 	  <div class="container">
@@ -68,7 +69,7 @@
 					  </div>
 				  </div>
 			  </div>
-			  <div class="tab-pane fade in" id="baby1">
+			  <div class="tab-pane fade in" id="birth">
 				  <div class="row">
 					  <div class="panel panel-default">
 						  <div class="panel-header well">
@@ -81,7 +82,7 @@
 									  <div class="jumbotron" style="margin-bottom:0;">
 									  	<p>Ist dein Kind in einem Berliner Krankenhaus oder Geburtshaus zur Welt gekommen?</p>
 										 <div style="text-align:center;">
-											 <button type="button" class="btn btn-primary" id="buttonGo">Genau <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+											 <button type="button" class="btn btn-primary" id="buttonHospital">Genau <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
 										 </div>
 									  </div>
 									  <div class="alert alert-success" role="alert">
@@ -92,7 +93,7 @@
 									  <div class="jumbotron" style="margin-bottom:0;">
 										  <p>Ist dein Kind zu Hause zur Welt kommen?</p>
 										 <div style="text-align:center;">
-											 <button type="button" class="btn btn-primary" id="buttonGo">Zu Hause <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+											 <button type="button" class="btn btn-primary" id="buttonHomeBirth">Zu Hause <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
 										 </div>
 									  </div>
 									  <div class="alert alert-success" role="alert">
@@ -159,6 +160,19 @@
 									  </div>
 								  </div>
 							  </div>
+						  </div>
+					  </div>
+				  </div>
+			  </div>
+			  <div class="tab-pane fade" id="openIssues">
+				  <div class="row">
+					   <div class="panel panel-default">
+						   <div class="panel-header well">
+							   <h1 class="text-center"></h1>
+						   </div>
+						  <div class="panel-body">
+							  <p></p>
+							  <div class="row"></div>
 						  </div>
 					  </div>
 				  </div>
