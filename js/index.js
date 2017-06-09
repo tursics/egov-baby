@@ -11,6 +11,8 @@ function activateTab(tab) {
 	$('.nav a[href="' + tab + '"]').parent().addClass('active');
 }
 
+//-----------------------------------------------------------------------
+
 $('.navbar-nav > li').click(function (event) {
 	'use strict';
 
@@ -20,8 +22,31 @@ $('.navbar-nav > li').click(function (event) {
 	activateTab(target);
 });
 
+//-----------------------------------------------------------------------
+
+$('#buttonGo').click(function (event) {
+	'use strict';
+
+	activateTab('#login');
+});
+
+//-----------------------------------------------------------------------
+
+$('.buttonSocialMedia').click(function (event) {
+	'use strict';
+
+	$('.navbar-right li:nth-child(1)').css('display', 'none');
+	$('.navbar-right li:nth-child(2)').css('display', 'block');
+
+	activateTab('#city');
+});
+
+//-----------------------------------------------------------------------
+
 $(document).ready(function () {
 	'use strict';
 
-	activateTab('#welcome');
+	activateTab('#baby1');
 });
+
+//-----------------------------------------------------------------------
