@@ -78,6 +78,16 @@ function finishIssue(id) {
 			gClosedIssues.push(gOpenIssues[i]);
 			gOpenIssues.splice(i, 1);
 
+			gClosedIssues.sort(function (a, b) {
+				var order = ['edit', 'exists', 'not'];
+
+				if (order.indexOf(a.type) === order.indexOf(b.type)) {
+					return a.title > b.title ? 1 : -1;
+				}
+
+				return order.indexOf(a.type) > order.indexOf(b.type) ? 1 : -1;
+			});
+
 			$('a[href="#openIssues"] .badge').html(gOpenIssues.length);
 			$('a[href="#closedIssues"] .badge').html(gClosedIssues.length);
 
@@ -237,6 +247,16 @@ function pushIssue(id, title, comment, type, price) {
 		comment: comment,
 		type: type,
 		price: price
+	});
+
+	gOpenIssues.sort(function (a, b) {
+		var order = ['claim', 'paper', 'optional'];
+
+		if (order.indexOf(a.type) === order.indexOf(b.type)) {
+			return a.title > b.title ? 1 : -1;
+		}
+
+		return order.indexOf(a.type) > order.indexOf(b.type) ? 1 : -1;
 	});
 
 	$('a[href="#openIssues"] .badge').html(gOpenIssues.length);
