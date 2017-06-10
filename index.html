@@ -52,6 +52,8 @@
 		  <li><a href="#sendIssues"></a></li>
 		  <li><a href="#pagegeburtsurkundeerstbeurkundung"></a></li>
 		  <li><a href="#pageanzeigeerklaerungvorfamilienname"></a></li>
+		  <li><a href="#pageelternzeitfrau"></a></li>
+		  <li><a href="#pageelternzeitmann"></a></li>
 	  </ul>
 
 	  <div class="container">
@@ -222,6 +224,8 @@
 										  <h4 class="media-heading">Per E-Mail senden</h4>
 										  <b>Versende die Dokumente einfach per E-Mail:</b>
 										  <br>
+										  <ul id="finalMail">
+										  </ul>
 										  <button type="button" class="btn btn-success disabled" style="margin:.5em 0 0 40px;"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> E-Mails vorbereiten</button>
 									  </div>
 								  </li>
@@ -401,6 +405,110 @@
 							  <div class="col-md-12">
 								  <div class="jumbotron" style="margin-bottom:0;text-align:center;">
 									  <button type="button" class="btn btn-primary" id="buttonanzeigeerklaerungvorfamilienname"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Fertig</button>
+								  </div>
+							  </div>
+						  </div>
+					  </div>
+				  </div>
+			  </div>
+			  <div class="tab-pane fade" id="pageelternzeitfrau">
+				  <div class="row">
+					   <div class="panel panel-default">
+						   <div class="panel-header well">
+							   <h1 class="text-center">Elternzeit für die Mutter</h1>
+						   </div>
+						  <div class="panel-body">
+							  <p>Der Antrag auf Elternzeit für den Arbeitgeber</p>
+							  <div class="col-md-12">
+								  <div class="jumbotron" style="margin-bottom:0;">
+									  <p>Die Anschrift der Mutter:</p>
+									 <div class="input-group" style="margin-bottom:1em;">
+										 <span class="input-group-addon" style="background:#3A5A99;padding:0 6px;"><img src="assets/socialmedia/Facebook.svg" style="height:26px;"></span>
+										 <textarea style="height:6em;width:30em;">Vorname Nachname&#10;Straße 123&#10;10110 Berlin</textarea>
+									 </div>
+									  <p>Die Anschrift der Firma:</p>
+									 <div class="input-group" style="margin-bottom:1em;">
+										 <textarea style="height:6em;width:30em;"></textarea>
+									 </div>
+									  <p>Mein Kind ist geboren am:</p>
+									  <div class="input-group" style="margin-bottom:1em;">
+										  <span class="input-group-addon" style="background:#3A5A99;padding:0 6px;"><img src="assets/socialmedia/Facebook.svg" style="height:26px;"></span>
+										  <input type="text" class="form-control" value="10. Juni 2017">
+									  </div>
+									  <p>Die Elternzeit der Mutter beginnt am (7 Wochen später):</p>
+									  <div class="input-group" style="margin-bottom:1em;">
+										  <span class="input-group-addon" style="background:#3A5A99;padding:0 6px;"><img src="assets/socialmedia/Facebook.svg" style="height:26px;"></span>
+										  <input type="text" class="form-control" value="29. Juli 2017">
+									  </div>
+									  <p>Die Elternzeit dauert:</p>
+									  <div class="input-group" style="margin-bottom:1em;">
+										  <input type="text" class="form-control" value="12 Monate">
+									  </div>
+								  </div>
+							  </div>
+							  <div>
+								  <div class="col-md-12" style="margin:1em 0;">
+									  <div class="jumbotron" style="margin-bottom:0;">
+										  <p>Unterschrift der Mutter:</p>
+										  <canvas id="sign3" width="400" height="150" style="top:10%;left:10%;border:1px solid #ccc;background:#fff;border-radius:1em;"></canvas>
+									  </div>
+								  </div>
+							  </div>
+							  <div class="col-md-12">
+								  <div class="jumbotron" style="margin-bottom:0;text-align:center;">
+									  <button type="button" class="btn btn-primary" id="buttonelternzeitfrau"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Fertig</button>
+								  </div>
+							  </div>
+						  </div>
+					  </div>
+				  </div>
+			  </div>
+			  <div class="tab-pane fade" id="pageelternzeitmann">
+				  <div class="row">
+					   <div class="panel panel-default">
+						   <div class="panel-header well">
+							   <h1 class="text-center">Elternzeit für den Vater</h1>
+						   </div>
+						  <div class="panel-body">
+							  <p>Der Antrag auf Elternzeit für den Arbeitgeber</p>
+							  <div class="col-md-12">
+								  <div class="jumbotron" style="margin-bottom:0;">
+									  <p>Die Anschrift des Vaters:</p>
+									 <div class="input-group" style="margin-bottom:1em;">
+										 <span class="input-group-addon" style="background:#3A5A99;padding:0 6px;"><img src="assets/socialmedia/Facebook.svg" style="height:26px;"></span>
+										 <textarea style="height:6em;width:30em;">Vorname Nachname&#10;Straße 123&#10;10110 Berlin</textarea>
+									 </div>
+									  <p>Die Anschrift der Firma:</p>
+									 <div class="input-group" style="margin-bottom:1em;">
+										 <textarea style="height:6em;width:30em;"></textarea>
+									 </div>
+									  <p>Mein Kind ist geboren am (bzw. voraussichtlich):</p>
+									  <div class="input-group" style="margin-bottom:1em;">
+										  <span class="input-group-addon" style="background:#3A5A99;padding:0 6px;"><img src="assets/socialmedia/Facebook.svg" style="height:26px;"></span>
+										  <input type="text" class="form-control" value="10. Juni 2017">
+									  </div>
+									  <p>Die Elternzeit des Vaters beginnt am:</p>
+									  <div class="input-group" style="margin-bottom:1em;">
+										  <span class="input-group-addon" style="background:#3A5A99;padding:0 6px;"><img src="assets/socialmedia/Facebook.svg" style="height:26px;"></span>
+										  <input type="text" class="form-control" value="10. Juni 2017">
+									  </div>
+									  <p>Die Elternzeit dauert:</p>
+									  <div class="input-group" style="margin-bottom:1em;">
+										  <input type="text" class="form-control" value="2 Monate">
+									  </div>
+								  </div>
+							  </div>
+							  <div>
+								  <div class="col-md-12" style="margin:1em 0;">
+									  <div class="jumbotron" style="margin-bottom:0;">
+										  <p>Unterschrift des Vaters:</p>
+										  <canvas id="sign4" width="400" height="150" style="top:10%;left:10%;border:1px solid #ccc;background:#fff;border-radius:1em;"></canvas>
+									  </div>
+								  </div>
+							  </div>
+							  <div class="col-md-12">
+								  <div class="jumbotron" style="margin-bottom:0;text-align:center;">
+									  <button type="button" class="btn btn-primary" id="buttonelternzeitmann"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Fertig</button>
 								  </div>
 							  </div>
 						  </div>

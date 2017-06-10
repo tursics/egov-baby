@@ -65,7 +65,7 @@ $('#buttonCity').click(function (event) {
 function finishIssue(id) {
 	'use strict';
 
-	var i, j, sum = 0, listOfficePaper = '', listOfficeDocs = '';
+	var i, j, sum = 0, listOfficePaper = '', listOfficeDocs = '', listMail = '';
 
 	for (i = 0; i < gOpenIssues.length; ++i) {
 		if (gOpenIssues[i].id === id) {
@@ -94,7 +94,11 @@ function finishIssue(id) {
 					sum += gClosedIssues[j].price;
 				}
 				if ('edit' === gClosedIssues[j].type) {
-					listOfficeDocs += '<li>' + gClosedIssues[j].title + '</li>';
+					if ('mail' === gClosedIssues[j].transaction) {
+						listMail += '<li>' + gClosedIssues[j].title + '</li>';
+					} else {
+						listOfficeDocs += '<li>' + gClosedIssues[j].title + '</li>';
+					}
 				} else if ('exists' === gClosedIssues[j].type) {
 					listOfficePaper += '<li>' + gClosedIssues[j].title + '</li>';
 				}
@@ -102,9 +106,14 @@ function finishIssue(id) {
 
 			$('a[href="#openIssues"] .badge').html(gOpenIssues.length === 0 ? '' : gOpenIssues.length);
 			$('a[href="#closedIssues"] .badge').html(gClosedIssues.length);
+			$('#finalMail').html(listMail);
 			$('#finalOfficeDocs').html(listOfficeDocs);
 			$('#finalOfficePaper').html(listOfficePaper);
 			$('#finalSum').html(parseInt(sum, 10) + ',' + (sum * 100).toString().substr(-2));
+
+			if (listMail.length > 0) {
+				$('#finalMail').parent().find('button').removeClass('disabled');
+			}
 
 			prepareOpenIssues();
 			return;
@@ -455,18 +464,52 @@ $('#buttonanzeigeerklaerungvorfamilienname').click(function (event) {
 
 //-----------------------------------------------------------------------
 
+$('#buttonelternzeitfrau').click(function (event) {
+	'use strict';
+
+	var i, id = 'elternzeitfrau';
+	for (i = 0; i < gOpenIssues.length; ++i) {
+		if (gOpenIssues[i].id === id) {
+			gOpenIssues[i].type = 'claim';
+		}
+	}
+
+	finishIssue(id);
+	activateTab('#openIssues');
+});
+
+//-----------------------------------------------------------------------
+
+$('#buttonelternzeitmann').click(function (event) {
+	'use strict';
+
+	var i, id = 'elternzeitmann';
+	for (i = 0; i < gOpenIssues.length; ++i) {
+		if (gOpenIssues[i].id === id) {
+			gOpenIssues[i].type = 'claim';
+		}
+	}
+
+	finishIssue(id);
+	activateTab('#openIssues');
+});
+
+//-----------------------------------------------------------------------
+
 $(document).ready(function () {
 	'use strict';
 
 	initCanvas('sign1');
 	initCanvas('sign2');
+	initCanvas('sign3');
+	initCanvas('sign4');
 
 	activateTab('#welcome');
 
 /*	$('.navbar-right li:nth-child(1)').css('display', 'none');
 	$('.navbar-right li:nth-child(2)').css('display', 'block');
 	gUser = true;
-	activateTab('#birth');*/
+	activateTab('#baby');*/
 });
 
 //-----------------------------------------------------------------------
