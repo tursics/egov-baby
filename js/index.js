@@ -234,7 +234,7 @@ function prepareClosedIssues() {
 		if ((gOpenIssues.length - optional) === 0) {
 			$('#closedIssues h1').html('Super, du bist fertig');
 			$('#closedIssues .panel-body p').html('Du hast alle Formulare ausgefüllt. Es ist Zeit für den letzten Schritt.<br><br>' +
-												  '<a href="#" class="btn btn-success" id="goToFinal" role="button">Alle Formulare zum Amt <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>' +
+												  '<a href="#" class="btn btn-success" id="goToFinal" role="button">Formulare verschicken <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>' +
 												  '<br><br>');
 		} else {
 			$('#closedIssues h1').html('Du hast schon viel erledigt');
