@@ -159,19 +159,47 @@ function pdfanzeigeerklaerungvorfamilienname() {
 	doc.text(27, 95, 'geborenen Sohn den/dieVornamen');
 	doc.text(27, 105, '...............................................................................................................................................');
 
+	doc.setFontType('bold');
+	doc.setFontSize(18);
+	doc.text(20, 120, 'B');
+
+	doc.setFontType('normal');
+	doc.setFontSize(11);
+	doc.text(27, 120, 'Ferner wähle ich/wählen wir für den Namen des Kindes');
+	doc.text(36, 130, 'deutsches Recht');
+	doc.text(36, 140, 'Wir führen einen gemeinsamen Ehenamen. Dieser wird Geburtsname des Kindes.');
+	doc.text(36, 150, 'Wir führen keinen gemeinsamen Namen.');
+	doc.text(36, 155, 'Daher bestimmen wir gemäß § 1617 BGB den Familiennamen');
+	doc.rect(27, 125, 5, 5); 
+	doc.rect(27, 135, 5, 5); 
+	doc.rect(27, 145, 5, 5); 
+
+
+
 	doc.setFont('courier');
 	doc.setFontSize(14);
 	doc.text(107, 90 - 1, '10. Juni 2017');
 	doc.text(146, 90 - 0, '---------');
 	doc.text(30, 105 - 1, 'Julian');
+	doc.text(28, 130 - 1, 'X');
+	doc.text(28, 140 - 1, 'X');
+
+/*	var canvas = document.getElementById('sign1');
+	canvas.toBlob(function(blob) {
+		var url = URL.createObjectURL(blob);
+
+		doc.addImage(blob, 'JPEG', 15, 40, 180, 180);
+		var str = doc.output('datauristring');
+		$('#pdfPreview').attr('src', str);
+	});*/
 
 	var str = doc.output('datauristring');
 	$('#pdfPreview').attr('src', str);
 
-	html += '<div>B Ferner wähle ich/wählen wir für den Namen des Kindes deutsches Recht</div>';
-	html += '<div>Wir führen einen gemeinsamen Ehenamen. Dieser wird Geburtsname des Kindes.</div>';
-	html += '<div>Wir führen keinen gemeinsamen Namen.</div>';
-	html += '<div>Daher bestimmen wir gemäß § 1617 BGB den Familiennamen</div>';
+	html += '<div>B </div>';
+	html += '<div></div>';
+	html += '<div></div>';
+	html += '<div></div>';
 	html += '<div>des Vaters der Mutter zum Geburtsnamen des Kindes.</div>';
 	html += '<div>Uns ist bekannt, daß diese Namensbestimmung auch für unsere weiteren gemeinsamen Kinder gilt.</div>';
 	html += '<div>C In Anwendung ausländischen Rechts wähle ich/wählen wir für den Namen des Kindes das Recht des Staates ..........................................................</div>';
