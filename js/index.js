@@ -209,14 +209,20 @@ function prepareOpenIssues() {
 function prepareClosedIssues() {
 	'use strict';
 
-	var str = '', i;
+	var str = '', i, optional = 0;
 
 	if (gClosedIssues.length === 0) {
 		$('#closedIssues h1').html('Los geht\'s');
 		$('#closedIssues .panel-body p').html('Fülle alle Formulare aus.<br><br>' +
 			'<a href="#" class="btn btn-primary" id="goToList" role="button">Zeige mir die Liste <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>');
 	} else {
-		if (gOpenIssues.length === 0) {
+		for (i = 0; i < gOpenIssues.length; ++i) {
+			if ('optional' === gOpenIssues[i].type) {
+				++optional;
+			}
+		}
+
+		if ((gOpenIssues.length - optional) === 0) {
 			$('#closedIssues h1').html('Super, du bist fertig');
 			$('#closedIssues .panel-body p').html('Du hast alle Formulare ausgefüllt. Es ist Zeit für den letzten Schritt.<br><br>' +
 												  '<a href="#" class="btn btn-success" id="goToFinal" role="button">Alle Formulare zum Amt <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>' +
@@ -244,7 +250,7 @@ function prepareClosedIssues() {
 
 //-----------------------------------------------------------------------
 
-function pushIssue(id, title, comment, type, price) {
+function pushIssue(id, title, comment, type, price, transaction) {
 	'use strict';
 
 	var i = 0;
@@ -264,7 +270,8 @@ function pushIssue(id, title, comment, type, price) {
 		title: title,
 		comment: comment,
 		type: type,
-		price: price
+		price: price,
+		transaction: transaction
 	});
 
 	gOpenIssues.sort(function (a, b) {
@@ -298,14 +305,27 @@ $('a[href="#closedIssues"]').on('shown.bs.tab', function (e) {
 
 //-----------------------------------------------------------------------
 
+function pushDefaultDocs() {
+	'use strict';
+
+	pushIssue('geburtsurkundeerstbeurkundung', 'Geburtsurkunde beantragen', 'Die Geburtsurkunde für das Baby', 'claim', 10, 'office');
+	pushIssue('personalausweismann', 'Personalausweis des Vaters', '... oder der Reisepass muss vorhanden sein', 'paper', 28.80, 'office');
+	pushIssue('personalausweisfrau', 'Personalausweis der Mutter', '... oder der Reisepass muss vorhanden sein', 'paper', 28.80, 'office');
+	pushIssue('geburtsurkundefrau', 'Geburtsurkunde der Mutter', 'Ein Nachweis, wo die Mutter geboren wurde', 'paper', 10, 'office');
+	pushIssue('vollmacht', 'Vollmacht', 'Eine andere Person soll die Geburtsurkunde abholen', 'optional', 0, 'office');
+	pushIssue('elternzeitmann', 'Elternzeit für den Vater', 'Der Antrag auf Elternzeit für den Arbeitgeber', 'optional', 0, 'mail');
+	pushIssue('elternzeitfrau', 'Elternzeit für die Mutter', 'Der Antrag auf Elternzeit für den Arbeitgeber', 'optional', 0, 'mail');
+	pushIssue('elterngeld', 'Elterngeld', 'Das Elterngeld ersetzt einen Teil ihres Einkommens. Es beträgt zwischen 300 € und 1800 €', 'optional', 0, 'mail');
+	pushIssue('wohngeld', 'Wohngeld', 'Wohngeld kann dir angemessenes und familien-gerechtes Wohnen ermöglichen', 'optional', 0, 'mailing');
+	pushIssue('erstausstattung', 'Erstausstattung', 'Beihilfe zur Erstausstattung für ihr Baby', 'optional', 0, 'mailing');
+}
+
+//-----------------------------------------------------------------------
+
 $('#buttonHospital').click(function (event) {
 	'use strict';
 
-	pushIssue('geburtsurkundeerstbeurkundung', 'Geburtsurkunde beantragen', 'Die Geburtsurkunde für das Baby', 'claim', 10);
-	pushIssue('personalausweismann', 'Personalausweis des Vaters', '... oder der Reisepass muss vorhanden sein', 'paper', 28.80);
-	pushIssue('personalausweisfrau', 'Personalausweis der Mutter', '... oder der Reisepass muss vorhanden sein', 'paper', 28.80);
-	pushIssue('geburtsurkundefrau', 'Geburtsurkunde der Mutter', 'Ein Nachweis, wo die Mutter geboren wurde', 'paper', 10);
-	pushIssue('vollmacht', 'Vollmacht', 'Eine andere Person soll die fertigen Urkunden abholen', 'optional', -1);
+	pushDefaultDocs();
 
 	prepareOpenIssues();
 	activateTab('#openIssues');
@@ -316,12 +336,8 @@ $('#buttonHospital').click(function (event) {
 $('#buttonHomeBirth').click(function (event) {
 	'use strict';
 
-	pushIssue('geburtsurkundeerstbeurkundung', 'Geburtsurkunde beantragen', 'Die Geburtsurkunde für das Baby', 'claim', 10);
-	pushIssue('anzeigeerklaerungvorfamilienname', 'Namenserklärung', 'Welchen Vor- und welchen Nachnamen soll das Baby erhalten', 'claim', -1);
-	pushIssue('personalausweismann', 'Personalausweis des Vaters', '... oder der Reisepass muss vorhanden sein', 'paper', 28.80);
-	pushIssue('personalausweisfrau', 'Personalausweis der Mutter', '... oder der Reisepass muss vorhanden sein', 'paper', 28.80);
-	pushIssue('geburtsurkundefrau', 'Geburtsurkunde der Mutter', 'Ein Nachweis, wo die Mutter geboren wurde', 'paper', 10);
-	pushIssue('vollmacht', 'Vollmacht', 'Eine andere Person soll die fertigen Urkunden abholen', 'optional', -1);
+	pushDefaultDocs();
+	pushIssue('anzeigeerklaerungvorfamilienname', 'Namenserklärung', 'Welchen Vor- und welchen Nachnamen soll das Baby erhalten', 'claim', -1, 'office');
 
 	prepareOpenIssues();
 	activateTab('#openIssues');
@@ -421,8 +437,8 @@ $('#buttongeburtsurkundeerstbeurkundungInvite').click(function (event) {
 $('#buttongeburtsurkundeerstbeurkundung').click(function (event) {
 	'use strict';
 
-	pushIssue('geburtsurkundemann', 'Geburtsurkunde des Vaters', 'Ein Nachweis, wo der Vater geboren wurde', 'paper', 10);
-	pushIssue('eheurkunde', 'Eheurkunde', 'Die Eheurkunde oder die beglaubigte Abschrift vom Familienbuch der Ehe', 'paper', 10);
+	pushIssue('geburtsurkundemann', 'Geburtsurkunde des Vaters', 'Ein Nachweis, wo der Vater geboren wurde', 'paper', 10, 'office');
+	pushIssue('eheurkunde', 'Eheurkunde', 'Die Eheurkunde oder die beglaubigte Abschrift vom Familienbuch der Ehe', 'paper', 10, 'office');
 
 	finishIssue('geburtsurkundeerstbeurkundung');
 	activateTab('#openIssues');
