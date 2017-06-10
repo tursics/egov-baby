@@ -458,15 +458,15 @@ $('#buttonanzeigeerklaerungvorfamilienname').click(function (event) {
 $(document).ready(function () {
 	'use strict';
 
+	initCanvas('sign1');
+	initCanvas('sign2');
+
 	activateTab('#welcome');
 
 /*	$('.navbar-right li:nth-child(1)').css('display', 'none');
 	$('.navbar-right li:nth-child(2)').css('display', 'block');
 	gUser = true;
-	activateTab('#birth');
-
-	initCanvas('sign1');
-	initCanvas('sign2');*/
+	activateTab('#birth');*/
 });
 
 //-----------------------------------------------------------------------
