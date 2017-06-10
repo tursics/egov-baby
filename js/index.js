@@ -371,8 +371,20 @@ function initCanvas(id) {
 
 //-----------------------------------------------------------------------
 
-$('#pagegeburtsurkundeerstbeurkundung button').click(function (event) {
+$('#buttongeburtsurkundeerstbeurkundungInvite').click(function (event) {
 	'use strict';
+
+	$('#buttongeburtsurkundeerstbeurkundungInvite').removeClass('btn-primary').addClass('btn-success');
+	$('#buttongeburtsurkundeerstbeurkundungInvite span').removeClass('glyphicon-plus').addClass('glyphicon-ok');
+});
+
+//-----------------------------------------------------------------------
+
+$('#buttongeburtsurkundeerstbeurkundung').click(function (event) {
+	'use strict';
+
+	pushIssue('geburtsurkundemann', 'Geburtsurkunde des Vaters', 'Ein Nachweis, wo der Vater geboren wurde', 'paper', 10);
+	pushIssue('eheurkunde', 'Eheurkunde', 'Die Eheurkunde oder die beglaubigte Abschrift vom Familienbuch der Ehe', 'paper', 10);
 
 	finishIssue('geburtsurkundeerstbeurkundung');
 	activateTab('#openIssues');
