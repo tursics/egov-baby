@@ -188,7 +188,7 @@ function prepareOpenIssues() {
 		$('#openIssues .panel-body p').html('Alle Formulare sind ausgefüllt.<br><br>' +
 			'<a href="#" class="btn btn-primary" id="goToList" role="button">Zeige mir die Liste <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>');
 	} else {
-		$('#openIssues h1').html('Es ist noch etwas zu tun');
+		$('#openIssues h1').html('Es gibt noch etwas zu tun');
 		$('#openIssues .panel-body p').html('Schaue dir die Liste an und bereite folgende Dokument vor:');
 
 		for (i = 0; i < gOpenIssues.length; ++i) {
@@ -460,13 +460,13 @@ $(document).ready(function () {
 
 	activateTab('#welcome');
 
-	$('.navbar-right li:nth-child(1)').css('display', 'none');
+/*	$('.navbar-right li:nth-child(1)').css('display', 'none');
 	$('.navbar-right li:nth-child(2)').css('display', 'block');
 	gUser = true;
 	activateTab('#birth');
 
 	initCanvas('sign1');
-	initCanvas('sign2');
+	initCanvas('sign2');*/
 });
 
 //-----------------------------------------------------------------------
