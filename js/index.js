@@ -1,5 +1,5 @@
 /*jslint browser: true*/
-/*global $*/
+/*global $,jsPDF,html2pdf*/
 
 //-----------------------------------------------------------------------
 
@@ -123,6 +123,76 @@ function finishIssue(id) {
 
 //-----------------------------------------------------------------------
 
+function pdfanzeigeerklaerungvorfamilienname() {
+	'use strict';
+
+	activateTab('#pagepdf');
+
+	var doc = new jsPDF(),
+		html = '';
+
+	doc.setFont('times');
+	doc.setFontType('bold');
+	doc.setFontSize(12);
+	doc.text(20, 20, 'Bestimmung zur Namensführung des Kindes (Bitte unbedingt ausfüllen)');
+
+	doc.setFontType('normal');
+	doc.setFontSize(11);
+	doc.text(20, 30, 'Der Familienname eines Kindes richtet sich grundsätzlich nach dem Heimatrecht des Kindes (Art. 10 Abs. 1');
+	doc.text(20, 35, 'EGBGB). Das Kind kann auch den Namen nach dem Recht eines Staates erhalten, dem ein Elternteil');
+	doc.text(20, 40, 'angehört; nach deutschem Recht, wenn ein Elternteil seinen gewöhnlichen Aufenthalt im Inland hat (Art. 10');
+	doc.text(20, 45, 'Abs. 3 Nr. 1 bzw. Nr. 2 EGBGB). Die Rechtswahl wird ausschließlich vom Inhaber/von der Inhaberin der');
+	doc.text(20, 50, 'elterlichen Sorge getroffen.');
+
+	doc.text(20, 60, 'Bei der Anwendung deutschen Rechts sind die Bestimmungen der §§ 1616 ff. BGB maßgebend (nähere');
+	doc.text(20, 65, 'Auskünfte werden vom zuständigen Standesamt erteilt). Die Bindungswirkung des Familiennamens');
+	doc.text(20, 70, 'vorgeborener Kinder ist hierbei zu beachten.');
+
+	doc.setFontType('bold');
+	doc.setFontSize(18);
+	doc.text(20, 80, 'A');
+
+	doc.setFontType('normal');
+	doc.setFontSize(11);
+	doc.text(27, 80, 'Als Inhaber der elterlichen Sorge*)');
+	doc.text(27, 90, 'bestimme ich/bestimmen wir für unsere/unseren am ..................................... geborene Tochter/');
+	doc.text(27, 95, 'geborenen Sohn den/dieVornamen');
+	doc.text(27, 105, '...............................................................................................................................................');
+
+	doc.setFont('courier');
+	doc.setFontSize(14);
+	doc.text(107, 90 - 1, '10. Juni 2017');
+	doc.text(146, 90 - 0, '---------');
+	doc.text(30, 105 - 1, 'Julian');
+
+	var str = doc.output('datauristring');
+	$('#pdfPreview').attr('src', str);
+
+	html += '<div>B Ferner wähle ich/wählen wir für den Namen des Kindes deutsches Recht</div>';
+	html += '<div>Wir führen einen gemeinsamen Ehenamen. Dieser wird Geburtsname des Kindes.</div>';
+	html += '<div>Wir führen keinen gemeinsamen Namen.</div>';
+	html += '<div>Daher bestimmen wir gemäß § 1617 BGB den Familiennamen</div>';
+	html += '<div>des Vaters der Mutter zum Geburtsnamen des Kindes.</div>';
+	html += '<div>Uns ist bekannt, daß diese Namensbestimmung auch für unsere weiteren gemeinsamen Kinder gilt.</div>';
+	html += '<div>C In Anwendung ausländischen Rechts wähle ich/wählen wir für den Namen des Kindes das Recht des Staates ..........................................................</div>';
+	html += '<div>Nach dem oben genannten Recht bestimme ich/bestimmen wir folgenden Familiennamen für das Kind:</div>';
+	html += '<div>.................................................................................................................................................</div>';
+	html += '<div>Die für das Kind hier vorgenommene Erteilung von Vornamen ist richtig und vollständig und entspricht auch hinsichtlich der Schreibweise meinem/unserem ausdrücklichen Willen. Mir/Uns ist bekannt, dass nach der Beurkundung durch den Standesbeamten grundsätzlich keine Änderungen mehr möglich sind.</div>';
+	html += '<div>*)Bei nicht miteinander verheirateten Eltern sind Nachweise über die gemeinsame elterliche Sorge und die Anerkennung der Vaterschaft beizufügen, gegebenenfalls vorzulegen</div>';
+	html += '<div>         Berlin, den ................................................</div>';
+	html += '<div>........................................................................... (Mutter)</div>';
+	html += '<div>Berlin, den ............................................</div>';
+	html += '<div>....................................................................... (V ater)</div>';
+
+//	html2pdf(html, doc, function (pdf) {
+//		var str = pdf.output('bloburi');
+//		var str = pdf.output('datauristring');
+//		$('#pdfPreview').attr('src', str);
+//	});
+}
+
+//-----------------------------------------------------------------------
+
 function onListItem() {
 //	'use strict';
 
@@ -134,6 +204,8 @@ function onListItem() {
 		finishIssue(id);
 	} else if ('edit' === type) {
 		activateTab('#page' + id);
+	} else if ('pdf' === type) {
+		pdfanzeigeerklaerungvorfamilienname();
 	}
 }
 
@@ -173,6 +245,8 @@ function prepareOneIssues(issue) {
 		str += '<a href="#" class="btn btn-default disabled" role="button" data-type="done" data-id="' + issue.id + '"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Vorhanden</a>';
 	} else if ('edit' === issue.type) {
 		str += '<a href="#" class="btn btn-primary" role="button" data-type="edit" data-id="' + issue.id + '"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Bearbeiten</a>';
+		str += '&nbsp;&nbsp;';
+		str += '<a href="#" class="btn btn-success" role="button" data-type="pdf" data-id="' + issue.id + '"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Vorschau</a>';
 	} else if ('not' === issue.type) {
 		str += '<a href="#" class="btn btn-default disabled" role="button" data-type="done" data-id="' + issue.id + '"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Nein danke</a>';
 	}
@@ -505,6 +579,7 @@ $(document).ready(function () {
 	initCanvas('sign4');
 
 	activateTab('#welcome');
+	pdfanzeigeerklaerungvorfamilienname();
 
 /*	$('.navbar-right li:nth-child(1)').css('display', 'none');
 	$('.navbar-right li:nth-child(2)').css('display', 'block');
