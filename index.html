@@ -49,6 +49,7 @@
 		  <li><a href="#city"></a></li>
 		  <li><a href="#openIssues"></a></li>
 		  <li><a href="#closedIssues"></a></li>
+		  <li><a href="#sendIssues"></a></li>
 		  <li><a href="#pagegeburtsurkundeerstbeurkundung"></a></li>
 		  <li><a href="#pageanzeigeerklaerungvorfamilienname"></a></li>
 	  </ul>
@@ -189,6 +190,83 @@
 						  <div class="panel-body">
 							  <p></p>
 							  <div class="row"></div>
+						  </div>
+					  </div>
+				  </div>
+			  </div>
+			  <div class="tab-pane fade" id="sendIssues">
+				  <div class="row">
+					   <div class="panel panel-default">
+						   <div class="panel-header well">
+							   <h1 class="text-center">Formulare verschicken</h1>
+						   </div>
+						  <div class="panel-body">
+							  <p>Alle Formulare sind vorbereitet. Folgende Schritte sind jetzt noch notwendig.</p>
+							  <ul class="media-list">
+								  <li class="media">
+									  <div class="media-left">
+										  <span class="glyphicon glyphicon-cloud" aria-hidden="true" style="background:#5cb85c;color:#fff;line-height:64px;min-width:64px;font-size:48px;text-align:center;"></span>
+									  </div>
+									  <div class="media-body">
+										  <h4 class="media-heading">Online verschicken</h4>
+										  <b>Die Dokumente werden direkt über das Internet versandt:</b>
+										  <br>
+										  <button type="button" class="btn btn-success disabled" style="margin:.5em 0 0 40px;"><span class="glyphicon glyphicon-cloud" aria-hidden="true"></span> versenden</button>
+									  </div>
+								  </li>
+								  <li class="media" style="border-top:1px solid #5cb85c;padding:1em 0 0 0;">
+									  <div class="media-left">
+										  <span class="glyphicon glyphicon-envelope" aria-hidden="true" style="background:#5cb85c;color:#fff;line-height:64px;min-width:64px;font-size:48px;text-align:center;"></span>
+									  </div>
+									  <div class="media-body">
+										  <h4 class="media-heading">Per E-Mail senden</h4>
+										  <b>Versende die Dokumente einfach per E-Mail:</b>
+										  <br>
+										  <button type="button" class="btn btn-success disabled" style="margin:.5em 0 0 40px;"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> E-Mails vorbereiten</button>
+									  </div>
+								  </li>
+								  <li class="media" style="border-top:1px solid #5cb85c;padding:1em 0 0 0;">
+									  <div class="media-left">
+										  <span class="glyphicon glyphicon-print" aria-hidden="true" style="background:#5cb85c;color:#fff;line-height:64px;min-width:64px;font-size:48px;text-align:center;"></span>
+									  </div>
+									  <div class="media-body">
+										  <h4 class="media-heading">In die Post geben</h4>
+										  <b>Drucke die Dokumente aus und schicke sie auf dem Postweg weg:</b>
+										  <br>
+										  <button type="button" class="btn btn-success disabled" style="margin:.5em 0 0 40px;"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> herunterladen und ausdrucken</button>
+									  </div>
+								  </li>
+								  <li class="media" style="border-top:1px solid #5cb85c;padding:1em 0 0 0;">
+									  <div class="media-left">
+										  <span class="glyphicon glyphicon-briefcase" aria-hidden="true" style="background:#5cb85c;color:#fff;line-height:64px;min-width:64px;font-size:48px;text-align:center;"></span>
+									  </div>
+									  <div class="media-body">
+										  <h4 class="media-heading">Auf zum Amt</h4>
+										  <b>Drucke die Dokumente aus und bringe sie persönlich zum Amt:</b>
+										  <br>
+										  <ul id="finalOfficeDocs">
+										  </ul>
+										  <button type="button" class="btn btn-success" style="margin:.5em 0 0 40px;"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> herunterladen und ausdrucken</button>
+										  <br>
+										  <br>
+										  <b>Du brauchst zusätzlich folgende Unterlagen:</b><br>
+										  <ul id="finalOfficePaper">
+										  </ul>
+										  <br>
+										  <b>Und unbedingt daran denken:</b><br>
+										  <ul>
+											  <li>Nehme bitte <span id="finalSum"></span> Euro mit</li>
+										  </ul>
+										  <br>
+										  <b>Gehe bitte zum Standesamt Lichtenberg</b><br>
+										  <div style="margin:0 0 0 40px;">
+											  Egon-Erwin-Kisch-Str. 106<br>
+											  13059 Berlin<br>
+											  Tel.: (030) 115<br>
+										  </div>
+									  </div>
+								  </li>
+							  </ul>
 						  </div>
 					  </div>
 				  </div>

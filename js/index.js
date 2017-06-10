@@ -65,7 +65,8 @@ $('#buttonCity').click(function (event) {
 function finishIssue(id) {
 	'use strict';
 
-	var i;
+	var i, j, sum = 0, listOfficePaper = '', listOfficeDocs = '';
+
 	for (i = 0; i < gOpenIssues.length; ++i) {
 		if (gOpenIssues[i].id === id) {
 			if ('claim' === gOpenIssues[i].type) {
@@ -88,8 +89,22 @@ function finishIssue(id) {
 				return order.indexOf(a.type) > order.indexOf(b.type) ? 1 : -1;
 			});
 
-			$('a[href="#openIssues"] .badge').html(gOpenIssues.length);
+			for (j = 0; j < gClosedIssues.length; ++j) {
+				if ((gClosedIssues[j].price > 0) && ('not' !== gClosedIssues[j].type) && ('exists' !== gClosedIssues[j].type)) {
+					sum += gClosedIssues[j].price;
+				}
+				if ('edit' === gClosedIssues[j].type) {
+					listOfficeDocs += '<li>' + gClosedIssues[j].title + '</li>';
+				} else if ('exists' === gClosedIssues[j].type) {
+					listOfficePaper += '<li>' + gClosedIssues[j].title + '</li>';
+				}
+			}
+
+			$('a[href="#openIssues"] .badge').html(gOpenIssues.length === 0 ? '' : gOpenIssues.length);
 			$('a[href="#closedIssues"] .badge').html(gClosedIssues.length);
+			$('#finalOfficeDocs').html(listOfficeDocs);
+			$('#finalOfficePaper').html(listOfficePaper);
+			$('#finalSum').html(parseInt(sum, 10) + ',' + (sum * 100).toString().substr(-2));
 
 			prepareOpenIssues();
 			return;
@@ -221,6 +236,9 @@ function prepareClosedIssues() {
 	$('#closedIssues .panel-body #goToList').click(function () {
 		prepareOpenIssues();
 		activateTab('#openIssues');
+	});
+	$('#closedIssues .panel-body #goToFinal').click(function () {
+		activateTab('#sendIssues');
 	});
 }
 
