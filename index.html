@@ -50,6 +50,7 @@
 		  <li><a href="#openIssues"></a></li>
 		  <li><a href="#closedIssues"></a></li>
 		  <li><a href="#pagegeburtsurkundeerstbeurkundung"></a></li>
+		  <li><a href="#pageanzeigeerklaerungvorfamilienname"></a></li>
 	  </ul>
 
 	  <div class="container">
@@ -214,13 +215,86 @@
 										  <button type="button" class="btn btn-default">Bezirk Neukölln</button>
 										  <button type="button" class="btn btn-default">Bezirk Treptow-Köpenick</button>
 										  <button type="button" class="btn btn-default">Bezirk Marzahn-Hellersdorf</button>
-										  <button type="button" class="btn btn-default">Bezirk Lichtenberg</button>
+										  <button type="button" class="btn btn-default" style="background:#3A5A99;color:#fff;"><img src="assets/socialmedia/Facebook.svg" style="height:32px;position:absolute;left:0;top:0;">Bezirk Lichtenberg</button>
 										  <button type="button" class="btn btn-default">Bezirk Reinickendorf</button>
 										  <button type="button" class="btn btn-danger">Nicht in Berlin</button>
 									  </div>
 								  </div>
 								  <div class="alert alert-success" role="alert">
 									  Die Geburt eines Kindes muss in dem Standesamt des Geburtsortes/Geburtsbezirks angezeigt werden. Der Wohnsitz der Eltern ist dabei nicht entscheidend.
+								  </div>
+							  </div>
+						  </div>
+					  </div>
+				  </div>
+			  </div>
+			  <div class="tab-pane fade" id="pageanzeigeerklaerungvorfamilienname">
+				  <div class="row">
+					   <div class="panel panel-default">
+						   <div class="panel-header well">
+							   <h1 class="text-center">Namenserklärung</h1>
+						   </div>
+						  <div class="panel-body">
+							  <p>Welchen Vor- und welchen Nachnamen soll das Baby erhalten</p>
+							  <div class="col-md-12">
+								  <div class="jumbotron" style="margin-bottom:0;">
+									  <p>Unser Kind ist ein:</p>
+									 <div class="input-group" style="margin-bottom:1em;">
+										 <span class="input-group-addon" style="background:#3A5A99;padding:0 6px;"><img src="assets/socialmedia/Facebook.svg" style="height:26px;"></span>
+										 <div class="dropdown">
+											 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+												 Junge
+												 <span class="caret"></span>
+											 </button>
+											 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+												 <li><a href="#">Junge</a></li>
+												 <li><a href="#">Mädchen</a></li>
+											 </ul>
+										 </div>
+									 </div>
+									  <p>Es heißt:</p>
+									  <div class="input-group" style="margin-bottom:1em;">
+										  <span class="input-group-addon" style="background:#3A5A99;padding:0 6px;"><img src="assets/socialmedia/Facebook.svg" style="height:26px;"></span>
+										  <input type="text" class="form-control" value="Julian">
+									  </div>
+									  <p>Wir wählen für den Namen des Kindes:</p>
+									 <div class="input-group" style="margin-bottom:1em;">
+										 <span class="input-group-addon" style="background:#3A5A99;padding:0 6px;"><img src="assets/socialmedia/Facebook.svg" style="height:26px;"></span>
+										 <div class="dropdown">
+											 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+												 Deutsches Recht
+												 <span class="caret"></span>
+											 </button>
+										 </div>
+									 </div>
+									 <div class="input-group" style="margin-bottom:1em;">
+										 <span class="input-group-addon" style="background:#3A5A99;padding:0 6px;"><img src="assets/socialmedia/Facebook.svg" style="height:26px;"></span>
+										 <div class="dropdown">
+											 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+												 Wir führen einen gemeinsamen Ehenamen. Dieser wird Geburtsname des Kindes
+												 <span class="caret"></span>
+											 </button>
+										 </div>
+									 </div>
+								  </div>
+							  </div>
+							  <div>
+								  <div class="col-md-6" style="margin:1em 0;">
+									  <div class="jumbotron" style="margin-bottom:0;">
+										  <p>Unterschrift der Mutter:</p>
+										  <canvas id="sign1" width="400" height="150" style="top:10%;left:10%;border:1px solid #ccc;background:#fff;border-radius:1em;"></canvas>
+									  </div>
+								  </div>
+								  <div class="col-md-6" style="margin:1em 0;">
+									  <div class="jumbotron" style="margin-bottom:0;">
+										  <p>Unterschrift des Vaters:</p>
+										  <canvas id="sign2" width="400" height="150" style="top:10%;left:10%;border:1px solid #ccc;background:#fff;border-radius:1em;"></canvas>
+									  </div>
+								  </div>
+							  </div>
+							  <div class="col-md-12">
+								  <div class="jumbotron" style="margin-bottom:0;text-align:center;">
+									  <button type="button" class="btn btn-primary" id="buttonanzeigeerklaerungvorfamilienname"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Fertig</button>
 								  </div>
 							  </div>
 						  </div>

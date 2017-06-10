@@ -117,7 +117,7 @@ function prepareOneIssues(issue) {
 	str += '</div>';
 	str += '<div class="caption" style="position:relative;">';
 	str += '<h3>' + issue.title + '</h3>';
-	str += '<p>' + issue.comment + '</p>';
+	str += '<p style="min-height:3em;">' + issue.comment + '</p>';
 
 	if ((issue.price > 0) && ('not' !== issue.type) && ('exists' !== issue.type)) {
 		str += '<span class="label label-danger" style="font-size:2em;transform:rotate(12deg);position:absolute;top:-.5em;right:0;">' + parseInt(issue.price, 10) + ',' + (issue.price * 100).toString().substr(-2) + ' €</span>';
@@ -291,10 +291,99 @@ $('#buttonHomeBirth').click(function (event) {
 
 //-----------------------------------------------------------------------
 
+function canvasDraw(data) {
+	'use strict';
+
+	data.ctx.beginPath();
+	data.ctx.moveTo(data.prevX, data.prevY);
+	data.ctx.lineTo(data.currX, data.currY);
+	data.ctx.strokeStyle = '#337ab7';
+	data.ctx.lineWidth = 2;
+	data.ctx.stroke();
+	data.ctx.closePath();
+}
+
+//-----------------------------------------------------------------------
+
+function canvasFindXY(res, e, data) {
+	'use strict';
+
+	if (res === 'down') {
+		data.prevX = data.currX;
+		data.prevY = data.currY;
+		data.currX = e.layerX - data.canvas.offsetLeft;
+		data.currY = e.layerY - data.canvas.offsetTop;
+
+		data.flag = true;
+		data.dot_flag = true;
+		if (data.dot_flag) {
+			data.ctx.beginPath();
+			data.ctx.fillStyle = '#337ab7';
+			data.ctx.fillRect(data.currX, data.currY, 2, 2);
+			data.ctx.closePath();
+			data.dot_flag = false;
+		}
+	}
+	if (res === 'up' || res === 'out') {
+		data.flag = false;
+	}
+	if (res === 'move') {
+		if (data.flag) {
+			data.prevX = data.currX;
+			data.prevY = data.currY;
+			data.currX = e.layerX - data.canvas.offsetLeft;
+			data.currY = e.layerY - data.canvas.offsetTop;
+			canvasDraw(data);
+		}
+	}
+}
+
+//-----------------------------------------------------------------------
+
+function initCanvas(id) {
+	'use strict';
+
+	var canvas = document.getElementById(id),
+		data = {
+			canvas: canvas,
+			ctx: canvas.getContext('2d'),
+			flag: false,
+			dot_flag: false,
+			prevX: 0,
+			currX: 0,
+			prevY: 0,
+			currY: 0
+		};
+
+	data.canvas.addEventListener("mousemove", function (e) {
+		canvasFindXY('move', e, data);
+	}, false);
+	data.canvas.addEventListener("mousedown", function (e) {
+		canvasFindXY('down', e, data);
+	}, false);
+	data.canvas.addEventListener("mouseup", function (e) {
+		canvasFindXY('up', e, data);
+	}, false);
+	data.canvas.addEventListener("mouseout", function (e) {
+		canvasFindXY('out', e, data);
+	}, false);
+}
+
+//-----------------------------------------------------------------------
+
 $('#pagegeburtsurkundeerstbeurkundung button').click(function (event) {
 	'use strict';
 
 	finishIssue('geburtsurkundeerstbeurkundung');
+	activateTab('#openIssues');
+});
+
+//-----------------------------------------------------------------------
+
+$('#buttonanzeigeerklaerungvorfamilienname').click(function (event) {
+	'use strict';
+
+	finishIssue('anzeigeerklaerungvorfamilienname');
 	activateTab('#openIssues');
 });
 
@@ -309,6 +398,9 @@ $(document).ready(function () {
 	$('.navbar-right li:nth-child(2)').css('display', 'block');
 	gUser = true;
 	activateTab('#birth');
+
+	initCanvas('sign1');
+	initCanvas('sign2');
 });
 
 //-----------------------------------------------------------------------
