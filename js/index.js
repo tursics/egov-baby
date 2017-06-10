@@ -56,6 +56,31 @@ $('#buttonCity').click(function (event) {
 
 //-----------------------------------------------------------------------
 
+function finishIssue(id) {
+	'use strict';
+
+	var i;
+	for (i = 0; i < gOpenIssues.length; ++i) {
+		if (gOpenIssues[i].id === id) {
+			if ('claim' === gOpenIssues[i].type) {
+				gOpenIssues[i].type = 'edit';
+			} else if ('paper' === gOpenIssues[i].type) {
+				gOpenIssues[i].type = 'exists';
+			}
+			gClosedIssues.push(gOpenIssues[i]);
+			gOpenIssues.splice(i, 1);
+
+			$('a[href="#openIssues"] .badge').html(gOpenIssues.length);
+			$('a[href="#closedIssues"] .badge').html(gClosedIssues.length);
+
+			prepareOpenIssues();
+			return;
+		}
+	}
+}
+
+//-----------------------------------------------------------------------
+
 function onListItem() {
 //	'use strict';
 
@@ -64,23 +89,9 @@ function onListItem() {
 		i;
 
 	if ('done' === type) {
-		for (i = 0; i < gOpenIssues.length; ++i) {
-			if (gOpenIssues[i].id === id) {
-				if ('claim' === gOpenIssues[i].type) {
-					gOpenIssues[i].type = 'edit';
-				} else if ('paper' === gOpenIssues[i].type) {
-					gOpenIssues[i].type = 'exists';
-				}
-				gClosedIssues.push(gOpenIssues[i]);
-				gOpenIssues.splice(i, 1);
-
-				$('a[href="#openIssues"] .badge').html(gOpenIssues.length);
-				$('a[href="#closedIssues"] .badge').html(gClosedIssues.length);
-
-				prepareOpenIssues();
-				return;
-			}
-		}
+		finishIssue(id);
+	} else if ('edit' === type) {
+		activateTab('#page' + id);
 	}
 }
 
@@ -159,8 +170,15 @@ function prepareClosedIssues() {
 		$('#closedIssues .panel-body p').html('Fülle alle Formulare aus.<br><br>' +
 			'<a href="#" class="btn btn-primary" id="goToList" role="button">Zeige mir die Liste <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>');
 	} else {
-		$('#closedIssues h1').html('Du hast schon viel erledigt');
-		$('#closedIssues .panel-body p').html('Diese Dokumente hast du vorbereitet und sind fertig:');
+		if (gOpenIssues.length === 0) {
+			$('#closedIssues h1').html('Super, du bist fertig');
+			$('#closedIssues .panel-body p').html('Du hast alle Formulare ausgefüllt. Es ist Zeit für den letzten Schritt.<br><br>' +
+												  '<a href="#" class="btn btn-success" id="goToFinal" role="button">Alle Formulare zum Amt <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>' +
+												  '<br><br>');
+		} else {
+			$('#closedIssues h1').html('Du hast schon viel erledigt');
+			$('#closedIssues .panel-body p').html('Diese Dokumente hast du vorbereitet und sind fertig:');
+		}
 
 		for (i = 0; i < gClosedIssues.length; ++i) {
 			str += prepareOneIssues(gClosedIssues[i]);
@@ -245,6 +263,15 @@ $('#buttonHomeBirth').click(function (event) {
 	pushIssue('GeburtsurkundeFrau', 'Geburtsurkunde der Mutter', 'Ein Nachweis, wo die Mutter geboren wurde', 'paper', -1);
 
 	prepareOpenIssues();
+	activateTab('#openIssues');
+});
+
+//-----------------------------------------------------------------------
+
+$('#pageGeburtsurkundeErstbeurkundung button').click(function (event) {
+	'use strict';
+
+	finishIssue('GeburtsurkundeErstbeurkundung');
 	activateTab('#openIssues');
 });
 
