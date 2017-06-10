@@ -170,16 +170,16 @@ function pdfanzeigeerklaerungvorfamilienname() {
 	doc.text(36, 140, 'Wir führen einen gemeinsamen Ehenamen. Dieser wird Geburtsname des Kindes.');
 	doc.text(36, 150, 'Wir führen keinen gemeinsamen Namen.');
 	doc.text(36, 155, 'Daher bestimmen wir gemäß § 1617 BGB den Familiennamen');
-	doc.rect(27, 125, 5, 5); 
-	doc.rect(27, 135, 5, 5); 
-	doc.rect(27, 145, 5, 5); 
+	doc.rect(27, 125, 5, 5);
+	doc.rect(27, 135, 5, 5);
+	doc.rect(27, 145, 5, 5);
 
 
 
 	doc.setFont('courier');
 	doc.setFontSize(14);
 	doc.text(107, 90 - 1, '10. Juni 2017');
-	doc.text(146, 90 - 0, '---------');
+	doc.text(146, 90, '---------');
 	doc.text(30, 105 - 1, 'Julian');
 	doc.text(28, 130 - 1, 'X');
 	doc.text(28, 140 - 1, 'X');
@@ -607,7 +607,6 @@ $(document).ready(function () {
 	initCanvas('sign4');
 
 	activateTab('#welcome');
-	pdfanzeigeerklaerungvorfamilienname();
 
 /*	$('.navbar-right li:nth-child(1)').css('display', 'none');
 	$('.navbar-right li:nth-child(2)').css('display', 'block');
